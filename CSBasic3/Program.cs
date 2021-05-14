@@ -49,6 +49,16 @@ namespace CSBasic3
                         break;
                 }
             } while (input != "exit");
+
+            for (int i2 = '가'; i2 <= '힣'; i2++)
+            {
+                Console.Write((char)i2);
+            }
+
+            for (i = intArray3.Length - 1; i >= 0; i--)
+            {
+                Console.WriteLine(intArray[i]);
+            }
         }
     }
 }
