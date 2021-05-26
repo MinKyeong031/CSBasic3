@@ -3,4 +3,9 @@
     //internal class Product
     //{
     //}
+
+    class Program
+    {
+
+    }
 }

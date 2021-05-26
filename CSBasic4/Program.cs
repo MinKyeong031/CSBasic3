@@ -102,8 +102,26 @@ namespace CSBasic4
 
             Console.WriteLine(MyMath.PI);
             MyMath.Hello();
+
+            //List<Student> students = new List<Student>();
+            //students.Add(new Student() { name = "윤인성", grade = 1 });
+            //students.Add(new Student() { name = "연하진", grade = 2 });
+            //students.Add(new Student() { name = "윤아린", grade = 3 });
+            //students.Add(new Student() { name = "윤명월", grade = 4 });
+            //students.Add(new Student() { name = "구지연", grade = 1 });
+            //students.Add(new Student() { name = "김연화", grade = 1 });
+            //students.Add(new Student() { name = "함기훈", favorityFood = "밀크티" });
+
+            List<Student> students = new List<Student>() {
+                new Student() { name = "윤인성", grade = 1 },
+                new Student() { name = "연하진", grade = 2 },
+                new Student() { name = "윤아린", grade = 3 },
+                new Student() { name = "윤명월", grade = 4 },
+                new Student() { name = "구지연", grade = 1 },
+                new Student() { name = "김연화", grade = 1 },
+                new Student() { name = "함기훈", favorityFood = "밀크티" } };
         }
-    
+
     }
 
     class FirstClass
