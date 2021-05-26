@@ -8,8 +8,6 @@ namespace OtherFileClass
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-        }
+        
     }
 }

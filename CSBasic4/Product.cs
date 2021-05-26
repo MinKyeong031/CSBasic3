@@ -1,6 +1,6 @@
 ﻿namespace CSBasic4
 {
-    internal class Product
-    {
-    }
+    //internal class Product
+    //{
+    //}
 }
