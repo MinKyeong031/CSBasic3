@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OtherFileClass
+namespace CBasic4
 {
-    class Program
+    class OtherFileClass
     {
-        
     }
 }

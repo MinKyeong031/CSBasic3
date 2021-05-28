@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Student
-
-{
+namespace CBasic4
+{   // 모델 클래스
     class Student
     {
-        public String id;
-        public String name;
+        public string id;
+        public string name;
         public int grade;
         public string major;
         public DateTime birthday;

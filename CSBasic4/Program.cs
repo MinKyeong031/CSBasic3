@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSBasic4
+namespace CBasic4
 {
 
     class MyMath
     {
-        public int a;
         public static double PI = 3.141592;
         public static void Hello()
         {
-            //a = 3;
             Console.WriteLine("Greeting~");
         }
     }
-
     class Product
     {
         public string name = "default";
@@ -44,11 +41,9 @@ namespace CSBasic4
             this.outTime = DateTime.Now;
         }
     }
-
-
     class Program
     {
-        //클래스 이름 충돌!
+        // 클래스 이름 충돌!
         //class Math
         //{
 
@@ -60,11 +55,11 @@ namespace CSBasic4
             Random random = new Random();
             Console.WriteLine(random.Next());
             Console.WriteLine(random.Next(100));
-            Console.WriteLine(random.Next(10,100));
+            Console.WriteLine(random.Next(10, 100));
 
             Console.WriteLine(random.NextDouble());
             Console.WriteLine(random.NextDouble());
-            Console.WriteLine(random.NextDouble()*100);
+            Console.WriteLine(random.NextDouble() * 100);
 
             List<int> list = new List<int>();
             list.Add(52);
@@ -73,14 +68,12 @@ namespace CSBasic4
             list.Add(64);
             foreach (var item in list)
             {
-                Console.WriteLine("Count : " + list.Count + "\titem : " + item);
+                Console.WriteLine("Count:" + list.Count + "\titem: " + item);
             }
-
             list.Remove(52);
-            
             foreach (var item in list)
             {
-                Console.WriteLine("Count : " + list.Count + "\titem : " + item);
+                Console.WriteLine("Count:" + list.Count + "\titem: " + item);
                 //list.Remove(item);
             }
 
@@ -93,35 +86,50 @@ namespace CSBasic4
 
             Product product = new Product();
             Console.WriteLine(product);
-
             Product productA = new Product() { name = "감자", price = 2000 };
             Console.WriteLine(productA);
-
             Product productB = new Product() { name = "고구마", price = 3000 };
             Console.WriteLine(productB);
 
             Console.WriteLine(MyMath.PI);
             MyMath.Hello();
-
-            //List<Student> students = new List<Student>();
-            //students.Add(new Student() { name = "윤인성", grade = 1 });
-            //students.Add(new Student() { name = "연하진", grade = 2 });
-            //students.Add(new Student() { name = "윤아린", grade = 3 });
-            //students.Add(new Student() { name = "윤명월", grade = 4 });
-            //students.Add(new Student() { name = "구지연", grade = 1 });
-            //students.Add(new Student() { name = "김연화", grade = 1 });
-            //students.Add(new Student() { name = "함기훈", favorityFood = "밀크티" });
-
+            /*
+            List<Student> students = new List<Student>();
+            students.Add(new Student() { name = "윤인성", grade = 1 });
+            students.Add(new Student() { name = "연하진", grade = 2 });
+            students.Add(new Student() { name = "윤아린", grade = 3 });
+            students.Add(new Student() { name = "윤명월", grade = 4 });
+            students.Add(new Student() { name = "구지연", grade = 1 });
+            students.Add(new Student() { name = "김연화", grade = 2 });
+            students.Add(new Student() { name = "함기훈", favorityFood="밀크티" });
+            */
             List<Student> students = new List<Student>() {
                 new Student() { name = "윤인성", grade = 1 },
                 new Student() { name = "연하진", grade = 2 },
                 new Student() { name = "윤아린", grade = 3 },
                 new Student() { name = "윤명월", grade = 4 },
                 new Student() { name = "구지연", grade = 1 },
-                new Student() { name = "김연화", grade = 1 },
-                new Student() { name = "함기훈", favorityFood = "밀크티" } };
-        }
+                new Student() { name = "김연화", grade = 2 },
+                new Student() { name = "함기훈", favorityFood = "밀크티" }
+            };
 
+            foreach (var item in students)
+                Console.WriteLine(item.name + " : " + item.grade);
+            /*
+            for (int i = 0; i < students.Count; i++)
+                if (students[i].grade > 0) {
+                    students.RemoveAt(i);
+                    i--;
+                }
+            */
+            for (int i = students.Count - 1; i >= 0; i--)
+                if (students[i].grade > 0)
+                    students.RemoveAt(i);
+
+            foreach (var item in students)
+                Console.WriteLine(item.name + " : " + item.grade);
+
+        }
     }
 
     class FirstClass
