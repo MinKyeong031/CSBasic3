@@ -41,7 +41,83 @@ namespace CSBasic5
             //Sample sample = new Sample();
             Console.WriteLine("세 번째 위치");
 
+            Box box = new Box(10, 10);
+            box.Height = 100;
+            box.Width = 200;
+            box.Price = 3000;
+            Console.WriteLine("박스의 면적은 : " + box.Area);
         }
+
+        class Box
+        {
+            // 템플릿 이용하면 편하다!!
+            //prop
+            //propfull 
+
+            public int some { get; set; }
+            public int MyProperty { get; set; }
+
+            public int Price { get; set; }
+
+            private int width;
+            public int Width
+            {
+                get { return width; }
+                set
+                {
+                    if (value > 0)
+                    {
+                        this.width = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("너비는 양수를 입력해주세요");
+                    }
+                }
+            }
+
+            private int height;
+            public int Height
+            {
+                get { return height; }
+                set
+                {
+                    if (value > 0)
+                    {
+                        this.height = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("높이는 양수를 입력해주세요");
+                    }
+                }
+            }
+
+
+
+
+            public Box(int width, int height)
+            {
+                this.width = width;
+                this.height = height;
+            }
+
+            private int area;
+
+            public int Area
+            {
+                get { return this.width * this.height; }
+            }
+
+
+            /*public int Area()
+            {
+                return this.width * this.height;
+            }*/
+
+
+        }
+
 
         class Sample
         {
@@ -57,7 +133,7 @@ namespace CSBasic5
         {
 
             public static int counter = 0;
-            public int id;
+            public readonly int id; // 생성자에서만 딱1번 변경 가능.
             public string name;
             public int price;
 
@@ -65,9 +141,18 @@ namespace CSBasic5
             {
                 Product.counter = Product.counter + 1;
                 this.id = Product.counter;
+
+                //this.id = ++Product.counter;
                 this.name = name;
                 this.price = price;
             }
+
+            ~Product()
+            {
+                Console.WriteLine(this + "의 소멸자 호출되었습니다.");
+                Console.WriteLine(this.name + "曰 : \"안녕히 계세요 여러분~\"");
+            }
+
 
             public override string ToString()
             {
