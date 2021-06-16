@@ -4,144 +4,144 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CBasic4
+namespace CSBasic5
 {
-
-    class MyMath
-    {
-        public static double PI = 3.141592;
-        public static void Hello()
-        {
-            Console.WriteLine("Greeting~");
-        }
-    }
-    class Product
-    {
-        public string name = "default";
-        public int price = 1000;
-
-        public override string ToString()
-        {
-            return this.name + " / " + this.price;
-        }
-    }
-
-    class Car
-    {
-        int carNumber;
-        DateTime inTime;
-        DateTime outTime;
-
-        public void SetInTime()
-        {
-            this.inTime = DateTime.Now;
-        }
-        public void SetOutTime()
-        {
-            this.outTime = DateTime.Now;
-        }
-    }
     class Program
     {
-        // 클래스 이름 충돌!
-        //class Math
-        //{
 
-        //}
+
         static void Main(string[] args)
         {
-            Car[] cars = new Car[10];
+            MultiClass ml = new MultiClass();
+            Console.WriteLine(ml.Multi(52, 273));
+            Console.WriteLine(ml.Multi(103, 32));
+            ml.Print();
+            Console.WriteLine(ml.Sum(1, 100));
+            MyMath.Abs(52);
+            MyMath.Abs(273);
+            MyMath.Abs(52.273f);
+            MyMath.Abs(52.273);
+            MyMath.Abs(30000000000);
 
-            Random random = new Random();
-            Console.WriteLine(random.Next());
-            Console.WriteLine(random.Next(100));
-            Console.WriteLine(random.Next(10, 100));
+            ml.somePublic();
+            //ml.someDefault();
+            //ml.somePrivate();
 
-            Console.WriteLine(random.NextDouble());
-            Console.WriteLine(random.NextDouble());
-            Console.WriteLine(random.NextDouble() * 100);
-
-            List<int> list = new List<int>();
-            list.Add(52);
-            list.Add(273);
-            list.Add(32);
-            list.Add(64);
-            foreach (var item in list)
-            {
-                Console.WriteLine("Count:" + list.Count + "\titem: " + item);
-            }
-            list.Remove(52);
-            foreach (var item in list)
-            {
-                Console.WriteLine("Count:" + list.Count + "\titem: " + item);
-                //list.Remove(item);
-            }
-
-            Console.WriteLine(Math.Abs(-52273));
-            Console.WriteLine(Math.Ceiling(52.273));
-            Console.WriteLine(Math.Floor(52.273));
-            Console.WriteLine(Math.Max(52, 273));
-            Console.WriteLine(Math.Min(52, 273));
-            Console.WriteLine(Math.Round(52.273));
-
-            Product product = new Product();
-            Console.WriteLine(product);
-            Product productA = new Product() { name = "감자", price = 2000 };
+            Product productA = new Product("감자", 2000);
+            Product productB = new Product("고구마", 3000);
             Console.WriteLine(productA);
-            Product productB = new Product() { name = "고구마", price = 3000 };
             Console.WriteLine(productB);
+            Console.WriteLine(Product.counter + "개 생성되었습니다.");
 
-            Console.WriteLine(MyMath.PI);
-            MyMath.Hello();
-            /*
-            List<Student> students = new List<Student>();
-            students.Add(new Student() { name = "윤인성", grade = 1 });
-            students.Add(new Student() { name = "연하진", grade = 2 });
-            students.Add(new Student() { name = "윤아린", grade = 3 });
-            students.Add(new Student() { name = "윤명월", grade = 4 });
-            students.Add(new Student() { name = "구지연", grade = 1 });
-            students.Add(new Student() { name = "김연화", grade = 2 });
-            students.Add(new Student() { name = "함기훈", favorityFood="밀크티" });
-            */
-            List<Student> students = new List<Student>() {
-                new Student() { name = "윤인성", grade = 1 },
-                new Student() { name = "연하진", grade = 2 },
-                new Student() { name = "윤아린", grade = 3 },
-                new Student() { name = "윤명월", grade = 4 },
-                new Student() { name = "구지연", grade = 1 },
-                new Student() { name = "김연화", grade = 2 },
-                new Student() { name = "함기훈", favorityFood = "밀크티" }
-            };
-
-            foreach (var item in students)
-                Console.WriteLine(item.name + " : " + item.grade);
-            /*
-            for (int i = 0; i < students.Count; i++)
-                if (students[i].grade > 0) {
-                    students.RemoveAt(i);
-                    i--;
-                }
-            */
-            for (int i = students.Count - 1; i >= 0; i--)
-                if (students[i].grade > 0)
-                    students.RemoveAt(i);
-
-            foreach (var item in students)
-                Console.WriteLine(item.name + " : " + item.grade);
+            Console.WriteLine("첫 번째 위치");
+            Sample sample = new Sample();
+            //Console.WriteLine(Sample.value);
+            Console.WriteLine("두 번째 위치");
+            Console.WriteLine(Sample.value);
+            //Sample sample = new Sample();
+            Console.WriteLine("세 번째 위치");
 
         }
-    }
 
-    class FirstClass
-    {
+        class Sample
+        {
+            public static int value;
+            static Sample()
+            {
+                value = 10;
+                Console.WriteLine("정적 생성자 호출");
+            }
+        }
 
-    }
-
-    class SecondClass
-    {
-        class ChildClass
+        class Product
         {
 
+            public static int counter = 0;
+            public readonly int id; // 생성자에서만 딱1번 변경 가능.
+            public string name;
+            public int price;
+
+            public Product(string name, int price)
+            {
+                Product.counter = Product.counter + 1;
+                this.id = Product.counter;
+
+                //this.id = ++Product.counter;
+                this.name = name;
+                this.price = price;
+            }
+
+            ~Product()
+            {
+                Console.WriteLine(this + "의 소멸자 호출되었습니다.");
+                Console.WriteLine(this.name + "曰 : \"안녕히 계세요 여러분~\"");
+            }
+
+
+            public override string ToString()
+            {
+                return id + " : " + name;
+            }
+        }
+
+        class MyMath
+        {
+
+            public static void Abs(int input)
+            {
+                Console.WriteLine("정수:" + ((input < 0) ? -input : input));
+            }
+
+            public static void Abs(double input)
+            {
+                Console.WriteLine("플롯:" + ((input < 0) ? -input : input));
+            }
+
+            public static void Abs(long input)
+            {
+                Console.WriteLine("롱:" + ((input < 0) ? -input : input));
+            }
+
+
+        }
+
+
+        class MultiClass
+        {
+            public void somePublic()
+            {
+                Console.WriteLine("public!");
+            }
+
+            void someDefault()
+            {
+                Console.WriteLine("Default");
+            }
+
+            private void somePrivate()
+            {
+                Console.WriteLine("private!");
+            }
+
+            public int Multi(int x, int y)
+            {
+                return x * y;
+            }
+
+            public void Print()
+            {
+                Console.WriteLine("Print() 메서드 호출!");
+            }
+
+            public int Sum(int min, int max)
+            {
+                int output = 0;
+                for (int i = min; i <= max; i++)
+                {
+                    output += i;
+                }
+                return output;
+            }
         }
     }
 }
