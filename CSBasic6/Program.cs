@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace CSBasic6
 {
+
+    class Animal
+    {
+        public int Age { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
