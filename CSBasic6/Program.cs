@@ -25,8 +25,52 @@ namespace Chapter6
     }
     class Program
     {
+        abstract class AbstractParent
+        {
+            public abstract void Test();
+        }
+        class AbstractChild : AbstractParent
+        {
+            public override void Test() { }
+        }
+
+        class Parent
+        {
+            public int variable = 273;
+            public void Method()
+            {
+                Console.WriteLine("부모의 메서드");
+            }
+        }
+        class Child : Parent
+        {
+            public new string variable = "shadowing";
+            public new void Method()
+            {
+                Console.WriteLine("자식의 메서드");
+            }
+        }
         static void Main(string[] args)
         {
+            Child child = new Child();
+            child.Method();
+            ((Parent)child).Method();
+
+            //Console.WriteLine((new Child()).variable);
+            //Console.WriteLine(((Parent)(new Child())).variable);
+            /*
+            List<Animal> Animals = new List<Animal>() 
+            {
+                new Dog(), new Cat(), new Cat(), new Dog(),
+                new Dog(), new Cat(), new Dog(), new Dog()
+            };
+            foreach(var item in Animals)
+            {
+                item.Eat();
+                item.Sleep();
+                ((Cat)item).Meow();
+            }
+            */
         }
     }
 }
