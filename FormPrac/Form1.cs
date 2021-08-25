@@ -12,25 +12,26 @@ namespace FormPrac
 {
     public partial class Form1 : Form
     {
+        enum OrderState { Ordered, Paymented, Prepared, Sended };
+        enum Course { NewmediaSoftware, NewmeidaWebsolution, NewmediaDesign};
+        enum CFood { 짜장면, 짬뽕, 볶음밥 };
+
         public Form1()
         {
             InitializeComponent();
+            IsMdiContainer = true;
         }
 
         private void btnMessageBox1_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             DialogResult result = DialogResult.None;
-            if (btn == btnMessageBox1)
-            {
+            if (btn == btnMessageBox1){
                 result = MessageBox.Show("안녕하세요~");
-            }
-            else if (btn == btnMessageBox2)
-            {
+            } else if (btn == btnMessageBox2){
                 result = MessageBox.Show("안녕하세요~", "격하게 환영인사");
             }
-            else if (btn == btnMessageBox3)
-            {
+            else if (btn == btnMessageBox3){
                 result = MessageBox.Show("안녕하세요~", "격하게 환영인사",
                    MessageBoxButtons.OKCancel,
                    MessageBoxIcon.Information);
@@ -46,6 +47,19 @@ namespace FormPrac
                     break;
             }
 
+        }
+
+        private void btnModaless_Click(object sender, EventArgs e)
+        {
+            Form form = new FormCustom();
+            if(sender == btnModaless)
+            {
+                form.MdiParent = this;
+                form.Show();
+            }
+            else if(sender == btnModal){
+                form.ShowDialog();
+            }
         }
     }
 }
